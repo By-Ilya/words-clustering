@@ -1,4 +1,4 @@
-const operationsCost = require('../config');
+const { operationsCost } = require('../config');
 const isEqualSymbols = require('../helpers/symbolsComparison');
 
 calculateDamerauLevenshteinDistance = (word1, word2) => {
@@ -51,6 +51,5 @@ initializeMatrixWithZeroValues = (rowLength, columnLength) => {
     return matrix;
 };
 
-console.log(
-    calculateDamerauLevenshteinDistance('корова', 'каравай')
-);
+
+module.exports = calculateDamerauLevenshteinDistance;

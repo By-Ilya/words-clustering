@@ -6,16 +6,23 @@ const {
     sentenceTokenizer,
     wordTokenizer
 } = require('./tokenizers/index');
+const { createVocabularySet } = require('./helpers/setsHelper');
 const {
-    createVocabularySet
-} = require('./helpers/setsHelper');
+    calculateHammingDistance,
+    calculateDamerauLevenshteinDistance,
+    calculateJakkarMetric
+} = require('./wordsComaprison/index');
+const createClusters = require('./clustering/hierarchical-clustering');
+const { outputFilePath } = require('./config');
 
 const args = process.argv.slice(2);
 
-run = async () => {
-    if (args.length) {
+runClustering = async () => {
+    if (args.length >= 2) {
         try {
             const pathToFile = args[0];
+            const algorithmIndex = parseInt(args[1]);
+
             if (await isFileExists(pathToFile)) {
                 const dataFromFile = await readDataFromFile(pathToFile);
                 const sentences = sentenceTokenizer(dataFromFile);
@@ -23,17 +30,45 @@ run = async () => {
                     return wordTokenizer(sentence);
                 });
                 const wordsSet = createVocabularySet(words);
-                console.log(wordsSet);
+
+                const distanceAlgorithm = chooseDistanceAlgorithm(
+                    algorithmIndex
+                );
+                const wordsClusters = createClusters(
+                    wordsSet,
+                    distanceAlgorithm
+                );
+
+                console.log(wordsClusters);
+                process.exit(0);
             }
         } catch (e) {
             console.log(e);
             process.exit(0);
         }
     } else {
-        console.log('No file arguments');
+        console.log('Error: Incorrect command to start.');
+        console.log(`Run 'npm start $filePath $chosenAlgorithmIndex'`);
         process.exit(0);
     }
 };
 
+chooseDistanceAlgorithm = (algorithmIndex) => {
+    switch (algorithmIndex) {
+        case 1:
+            console.log(`Chosen algorithm: 'HammingDistance'`);
+            return calculateHammingDistance;
+        case 2:
+            console.log(`Chosen algorithm: 'DamerauLevenshteinDistance'`);
+            return calculateDamerauLevenshteinDistance;
+        case 3:
+            console.log(`Chosen algorithm: 'JakkarMetric'`);
+            return calculateJakkarMetric;
+        default:
+            console.log(`Default algorithm: 'HammingDistance'`);
+            return calculateHammingDistance;
+    }
+};
 
-run();
+
+runClustering();

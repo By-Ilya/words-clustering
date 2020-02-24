@@ -1,6 +1,6 @@
 const isEqualSymbols = require('../helpers/symbolsComparison');
 
-calculateHammingDistance = (word1, word2, isNormalisedDistance = false) => {
+calculateHammingDistance = (word1, word2, isNormalisedDistance = true) => {
     const wordWithMaxLength = word1.length >= word2.length
         ? word1
         : word2;
@@ -15,4 +15,5 @@ calculateHammingDistance = (word1, word2, isNormalisedDistance = false) => {
     return distance;
 };
 
-console.log(calculateHammingDistance('корова', 'каравай'));
+
+module.exports = calculateHammingDistance;

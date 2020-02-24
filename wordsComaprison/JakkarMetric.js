@@ -21,4 +21,5 @@ getWordWithStartEndSymbols = (word) => {
     return TRIGRAM_START_SYMBOLS + word + TRIGRAM_END_SYMBOLS;
 };
 
-console.log(calculateJakkarMetric('корова', 'каравай'));
+
+module.exports = calculateJakkarMetric;
