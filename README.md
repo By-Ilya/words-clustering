@@ -61,6 +61,8 @@ In the project root directory run `npm start <filePath> <chosenAlgorithmIndex>` 
 #### Example of running commands:
 `npm start ./text-examples/book1.txt 2`
 
+See the result in the configured `outputFilePath` file.
+
 ## Used `Node JS` libraries
 - `n-gram` (version `1.1.2`) is used for creating _n-grams_ from words (for Jakkar metric algorithm);
 - `hierarchical-clustering` (version `1.1.0`) is used for create hierarchical clusters from words;
