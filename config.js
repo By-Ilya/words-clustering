@@ -8,6 +8,6 @@ const operationsCost = {
 };
 
 const minClusters = parseInt(process.env.minimalClusters) || 2;
-const outputFilePath = process.env.outputFilePath || './output-data/clusters.txt';
+const outputFilePath = process.env.outputFilePath || './output-data/clusters.xml';
 
 module.exports = { operationsCost, minClusters, outputFilePath };

@@ -1,5 +1,6 @@
 const {
     isFileExists,
+    getDocumentName,
     readDataFromFile,
 } = require('./helpers/filesHelper');
 const {
@@ -13,7 +14,7 @@ const {
     calculateJakkarMetric
 } = require('./wordsComaprison/index');
 const createClusters = require('./clustering/hierarchical-clustering');
-const { outputFilePath } = require('./config');
+const createXmlFile = require('./createXml');
 
 const args = process.argv.slice(2);
 
@@ -39,7 +40,11 @@ runClustering = async () => {
                     distanceAlgorithm
                 );
 
-                console.log(wordsClusters);
+                await createXmlFile(
+                    getDocumentName(pathToFile),
+                    wordsClusters
+                );
+                console.log('Words clustering has ended successfully!');
                 process.exit(0);
             }
         } catch (e) {
