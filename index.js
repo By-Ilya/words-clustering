@@ -6,6 +6,9 @@ const {
     sentenceTokenizer,
     wordTokenizer
 } = require('./tokenizers/index');
+const {
+    createVocabularySet
+} = require('./helpers/setsHelper');
 
 const args = process.argv.slice(2);
 
@@ -19,7 +22,8 @@ run = async () => {
                 const words = sentences.map(sentence => {
                     return wordTokenizer(sentence);
                 });
-                console.log(words);
+                const wordsSet = createVocabularySet(words);
+                console.log(wordsSet);
             }
         } catch (e) {
             console.log(e);
