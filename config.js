@@ -6,8 +6,7 @@ const operationsCost = {
     replaceOperation: parseFloat(process.env.replaceOperationCost) || 1,
     swapOperation: parseFloat(process.env.swapOperationCost) || 1
 };
+const outputPath = process.env.outputPath || './output-data/';
 
-const minClusters = parseInt(process.env.minimalClusters) || 2;
-const outputFilePath = process.env.outputFilePath || './output-data/clusters.xml';
 
-module.exports = { operationsCost, minClusters, outputFilePath };
+module.exports = { operationsCost, outputPath };

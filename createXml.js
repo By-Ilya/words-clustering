@@ -1,4 +1,4 @@
-const { outputFilePath } = require('./config');
+const { outputPath } = require('./config');
 const { writeDataToFile } = require('./helpers/filesHelper');
 const {
     createXmlHeader,
@@ -18,7 +18,10 @@ createXmlFile = async (documentName, clusters) => {
 
     let xml = xmlRoot.end({ pretty: true });
 
-    await writeDataToFile(outputFilePath, xml);
+    await writeDataToFile(
+        outputPath + `${documentName}.xml`,
+        xml
+    );
 };
 
 

@@ -7,6 +7,7 @@ Algorithm performs the following steps:
 2. Splits text into sentences and words (using tokenizers).
 3. Creates vocabulary (unique words) from all extracted words.
 4. Create hierarchical clusters from vocabulary (using different words distance algorithms).
+Count of clusters is specified as `[<vocabularySize> / 2]`.
 5. Writes obtained clusters to specified `.xml` file.
 
 ## Distance algorithms
@@ -46,11 +47,8 @@ _Note:_ The algorithm numbers described here are used as the input parameter for
 - `swapOperationCost`: `float` number that specifies the cost for _swap_ operation in
 **Damerau-Levenshtein distance algorithm** (`1.0` was configured as default value);
 
-- `minimalClusters`: `integer` number that specifies the number of clusters in 
-hierarchical algorithm (`2` was configured as default value);
-
-- `outputFilePath`: `string` value that specifies the `.xml` absolute or relative output file path
-(`./output-data/clusters.xml` was configured as default value).
+- `outputPath`: `string` value that specifies the absolute or relative folder for output data
+(`./output-data/` was configured as default value).
 
 ## Running command
 In the project root directory run `npm start <filePath> <chosenAlgorithmIndex>` command, where:
@@ -61,7 +59,8 @@ In the project root directory run `npm start <filePath> <chosenAlgorithmIndex>` 
 #### Example of running commands:
 `npm start ./text-examples/book1.txt 2`
 
-See the result in the configured `outputFilePath` file.
+See the result in the configured `outputPath/<documentName>.xml` file.
+For previous running command example `<docemntName>` is equal to `book1`.
 
 ## Used `Node JS` libraries
 - `n-gram` (version `1.1.2`) is used for creating _n-grams_ from words (for Jakkar metric algorithm);

@@ -13,7 +13,7 @@ const {
     calculateDamerauLevenshteinDistance,
     calculateJakkarMetric
 } = require('./wordsComaprison/index');
-const createClusters = require('./clustering/hierarchical-clustering');
+const createClusters = require('./clustering/hierarchicalСlustering');
 const createXmlFile = require('./createXml');
 
 const args = process.argv.slice(2);
@@ -31,6 +31,7 @@ runClustering = async () => {
                     return wordTokenizer(sentence);
                 });
                 const wordsSet = createVocabularySet(words);
+                console.log('Vocabulary size =', wordsSet.size);
 
                 const distanceAlgorithm = chooseDistanceAlgorithm(
                     algorithmIndex
