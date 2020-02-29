@@ -12,9 +12,16 @@ calculateJakkarMetric = (word1, word2) => {
     const trigramsWord1 = new Set(nGram.trigram(formattedWord1));
     const trigramsWord2 = new Set(nGram.trigram(formattedWord2));
 
-    return (
-        intersection(trigramsWord1, trigramsWord2).size / union(trigramsWord1, trigramsWord2).size
-    );
+    const trigramIntersectionSize = intersection(
+        trigramsWord1, trigramsWord2
+    ).size;
+    const trigramUnionSize = union(
+        trigramsWord1, trigramsWord2
+    ).size;
+
+    if (!trigramUnionSize) return 0;
+
+    return trigramIntersectionSize / trigramUnionSize;
 };
 
 getWordWithStartEndSymbols = (word) => {

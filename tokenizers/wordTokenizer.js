@@ -1,4 +1,4 @@
- const WORD_SPLIT_REGEX = /[^\s.,–:;"«»()!?]+/g;
+ const WORD_SPLIT_REGEX = /[^\s.,–\-:;"‘`«»()!?]+/g;
 
  wordTokenizer = (text) => {
      return text.match(WORD_SPLIT_REGEX)

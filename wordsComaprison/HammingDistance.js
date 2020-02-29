@@ -5,6 +5,8 @@ calculateHammingDistance = (word1, word2, isNormalisedDistance = true) => {
         ? word1
         : word2;
 
+    if (!wordWithMaxLength.length) return 0;
+
     let distance = 0;
     for (let i = 0; i < wordWithMaxLength.length; i++) {
        if (!word1[i] || !word2[i] || !isEqualSymbols(word1[i], word2[i]))
